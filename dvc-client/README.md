@@ -6,18 +6,16 @@ npm install
 ```
 
 
-## Usage
-
-[TODO]
+## Quick Start
 
 - Write program
 
-Reference [dvc-succinct-program](../dvc-succinct-program/) to write your own bussiness program.
+Reference [dvc-succinct-program](../dvc-succinct-program/README.md) to write your own bussiness program.
 
 
 - Upload program
 
-See [demo/dvc_upload_program](./demo/dvc_upload_program.js)
+See [demo/dvc_upload_program](./demo/upload_program.js)
 
 
 - Execute ZKTLS

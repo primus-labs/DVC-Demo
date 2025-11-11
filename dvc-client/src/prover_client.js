@@ -1,9 +1,15 @@
 const axios = require('axios');
 const FormData = require('form-data');
 const fs = require('fs');
+require('dotenv').config();
 
 class ProverClient {
-  constructor(baseURL = 'http://localhost:38080', timeout = 10000) {
+  constructor(timeout = 10000) {
+    const baseURL = process.env.DVC_SERVICE_URL;
+    console.log(baseURL)
+    if (!baseURL || baseURL === "") {
+      throw new Error(`Please set DVC_SERVICE_URL in .env`);
+    }
     this.client = axios.create({
       baseURL,
       timeout,

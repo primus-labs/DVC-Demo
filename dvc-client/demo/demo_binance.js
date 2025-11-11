@@ -5,8 +5,11 @@ const { saveToFile } = require('../src/utils')
 const ZKTLSClient = require('../src/zktls_client');
 
 function getBinanaceRequestParams() {
-  const key = process.env[`BINANCE_API_KEY`];
-  const secret = process.env[`BINANCE_API_SECRET`];
+  const key = process.env.BINANCE_API_KEY;
+  const secret = process.env.BINANCE_API_SECRET;
+  if (!key || key === "" || !secret || secret === "") {
+    throw new Error(`Please set BINANCE_API_KEY or BINANCE_API_SECRET in .env`);
+  }
   const recvWindow = Number(process.env.BINANCE_RECV_WINDOW) || 60;
 
   const exchange = new ccxt['binance']({

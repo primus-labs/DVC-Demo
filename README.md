@@ -7,13 +7,14 @@
 ## Basic Workflow
 
 - **Write program**
-  1. Write a Program in Rust and compile it into an ELF. Refer to `dvc-succinct-program` for guidance.
-  2. Upload the ELF generated in Step 1 to DVC-Service. The service will return a program ID. See `dvc-service`'s `uploadProgram` for details.
+  1. Write a Program in Rust and compile it into an ELF.
+  2. Upload the ELF generated in Step 1 to DVC-Service. The service will return a program ID.
 - **Execute ZKTLS and submit proof task**
-  1. Write the client code to interact with the Primus Network using ZKTLS to generate the attestation data. Refer to `dvc-client` for the implementation.
-  2. Submit the program ID and attestation data from the previous steps to the Service. Refer to `dvc-service`'s `submitTask` for instructions.
-  3. Query the results. See `dvc-service`'s `getResult` for more information.
+  1. Write the client code to interact with the Primus Network using ZKTLS to generate the attestation data.
+  2. Submit the program ID and attestation data from the previous steps to the Service.
+  3. Query the results.
 
+See [Quick Start](./dvc-client/README.md#quick-start) for more details.
 
 <br/>
 
