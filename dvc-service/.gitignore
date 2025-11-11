@@ -1,0 +1,5 @@
+.env
+programs
+proof_output
+request_data
+__pycache__

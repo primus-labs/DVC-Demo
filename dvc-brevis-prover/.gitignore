@@ -1,0 +1,11 @@
+/target
+.idea/
+.DS_Store
+.vscode
+.secrets
+tmp
+/logs
+/examples/target
+Cargo.lock
+pico_out
+nohup.out
