@@ -75,4 +75,4 @@ sequenceDiagram
 
 ## User Guide
 
-- [USER GUIDE](./USER_GUIDE.md).
+- [Developer's Guide](./DEVELOPER_GUIDE.md).
