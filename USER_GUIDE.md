@@ -7,7 +7,7 @@ Where can we get the balances? We can use [Account information (USER_DATA)](http
 
 ### Step 1: Generate Attestation Data
 
-From the Binance API documentation, you can identify the **request URL** and **parameters**. Using these, generate the required request URL with **ccxt**. Then, following the [Primus Network](https://docs.primuslabs.xyz/primus-network/understand-primus-network) documentation, fill in the request parameters and specify how to parse the response. Finally, run **ZKTLS** with **Primus Network** to obtain the **attestation data**. A complete example can be found in: [demo_binance.js](./dvc-client/demo/demo_binance.js).
+From the Binance API documentation, you can identify the **request URL** and **parameters**. Using these, generate the required request URL with **ccxt** (a library to integrate with CEX APIs). Then, following the [Primus Network](https://docs.primuslabs.xyz/primus-network/understand-primus-network) documentation, fill in the request parameters and specify how to parse the response. Finally, run **ZKTLS** with **Primus Network** to obtain the **attestation data**. A complete example can be found in: [demo_binance.js](./dvc-client/demo/demo_binance.js).
 
 > **Note:** You should configure your Binance account’s `API_KEY` and `API_SECRET` in the `.env` file.
 
