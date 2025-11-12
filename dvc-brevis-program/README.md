@@ -11,5 +11,5 @@
 RUST_LOG=info cargo pico build
 ```
 
-The ELF binary built at: `$PWD/elf/riscv32im-pico-zkvm-elf`.
+The ELF binary built at: `$PWD/elf/`.
 

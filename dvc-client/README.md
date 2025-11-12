@@ -15,20 +15,20 @@ Reference [dvc-succinct-program](../dvc-succinct-program/README.md) to write you
 
 - Upload program
 
-See [demo/dvc_upload_program](./demo/upload_program.js)
+See [demo/upload_program](./demo/upload_program.js).
 
 
 - Execute ZKTLS
 
-See [demo/demo_okx](./demo/demo_okx.js)
+See [demo/demo_okx](./demo/demo_okx.js).
 
 
 - Submit proof task
 
-See [demo/submit_task](./demo/submit_task.js)
+See [demo/submit_task](./demo/submit_task.js).
 
 
 - Get task result
 
-See [demo/get_result](./demo/get_result.js)
+See [demo/get_result](./demo/get_result.js).
 

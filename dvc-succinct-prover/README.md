@@ -29,8 +29,8 @@ Usage: dvc-succinct-prover [OPTIONS]
 Options:
       --execute                  
       --prove                    
-      --elf <ELF>                [default: ../dvc-succinct-program/target/elf-compilation/riscv32im-succinct-zkvm-elf/release/dvc-succinct-program]
-      --input <INPUT>            [default: ../testdata/hash_comparsion.json]
+      --elf <ELF>                [default: ../dvc-succinct-program/target/elf-compilation/riscv32im-succinct-zkvm-elf/release/binance-elf]
+      --input <INPUT>            [default: ../testdata/binance-attestation.json]
       --output-dir <OUTPUT_DIR>  [default: ./proof_output]
   -h, --help                     Print help
   -V, --version                  Print version

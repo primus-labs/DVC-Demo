@@ -6,7 +6,7 @@ pub enum ZkErrorCode {
     VerifyAttestation,
     InvalidMessagesLength,
     GetJsonValueFail,
-    NotMatch,
+    InvalidJsonValueSize,
     Unsatisfied,
 }
 

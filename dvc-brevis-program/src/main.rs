@@ -54,21 +54,35 @@ fn app_main() -> Result<(), ZktlsError> {
     ensure_zk!(requests_len == msg_len, zkerr!(ZkErrorCode::InvalidMessagesLength));
 
     let mut json_path = vec![];
-    json_path.push("$.data[*].baseCcy");
-    json_path.push("$.data[*].minSz");
+    json_path.push("$.balances[*].asset");
+    json_path.push("$.balances[*].free");
+    json_path.push("$.balances[*].locked");
 
     let json_value = messages[0][0]
         .get_json_values(&json_path)
         .map_err(|e| zkerr!(ZkErrorCode::GetJsonValueFail, e.to_string()))?;
+    // println!("{:#?}", json_value);
+    ensure_zk!(
+        json_value.len() % json_path.len() == 0 && json_value.len() >= 3,
+        zkerr!(ZkErrorCode::InvalidJsonValueSize)
+    );
 
-    const BASE_CCY: &str = "BTC";
-    let base_ccy = json_value[0].trim_matches('"').to_ascii_uppercase();
-    ensure_zk!(base_ccy == BASE_CCY, zkerr!(ZkErrorCode::NotMatch));
-    commit(&BASE_CCY);
+    const BASE_ASSET: &str = "ETH";
+    const BASE_VALUE: f64 = 0.1;
+    let mut balance = 0.0;
+    let size = json_value.len() / json_path.len();
+    for j in 0..size {
+        let asset = json_value[j].trim_matches('"').to_ascii_uppercase();
+        if asset == BASE_ASSET {
+            let free: f64 = json_value[size + j].trim_matches('"').parse().unwrap_or(0.0);
+            let locked: f64 = json_value[size * 2 + j].trim_matches('"').parse().unwrap_or(0.0);
+            balance = free + locked;
+            break;
+        }
+    }
 
-    const BASE_VALUE: f64 = 0.00001;
-    let min_sz = json_value[1].trim_matches('"').parse::<f64>().unwrap_or(0.0);
-    ensure_zk!(min_sz > BASE_VALUE, zkerr!(ZkErrorCode::Unsatisfied));
+    ensure_zk!(balance > BASE_VALUE, zkerr!(ZkErrorCode::Unsatisfied));
+    commit(&BASE_ASSET);
     commit(&BASE_VALUE);
 
     Ok(())

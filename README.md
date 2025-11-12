@@ -64,7 +64,7 @@ sequenceDiagram
 ## Components
 
 - [dvc-client](./dvc-client/README.md)
-- [dvc-service](./dvc-service/README.md)
+- [dvc-service](./dvc-service/README.md), running inside TEE
 - program:
   - [dvc-brevis-program](./dvc-brevis-program/README.md)
   - [dvc-succinct-program](./dvc-succinct-program/README.md)
@@ -73,3 +73,6 @@ sequenceDiagram
   - [dvc-succinct-prover](./dvc-succinct-prover/README.md)
 
 
+## User Guide
+
+- [USER GUIDE](./USER_GUIDE.md).

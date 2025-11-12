@@ -42,7 +42,7 @@ struct Args {
     )]
     elf: String,
 
-    #[arg(long, default_value = "../testdata/hash_comparsion.json")]
+    #[arg(long, default_value = "../testdata/binance-attestation.json")]
     input: String,
 
     #[arg(long, default_value = "./proof_output")]
@@ -81,12 +81,6 @@ async fn main() {
         println!("Program executed successfully.");
 
         println!("public_values: {}", public_values.raw());
-
-        // let bytes = hex::decode(public_values.raw().trim_start_matches("0x")).unwrap();
-        // let value: PublicValuesStruct = bincode::deserialize(public_values.as_slice()).unwrap();
-        // println!("public_values:\n{:#?}", value);
-        // let value_json = serde_json::to_string(&value).expect("failed to serialize public values");
-        // println!("public_values(json):\n{}", value_json);
 
         // Record the number of cycles executed.
         println!("Number of cycles: {}", report.total_instruction_count());
