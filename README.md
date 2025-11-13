@@ -27,6 +27,7 @@ sequenceDiagram
       participant queue as TaskQueue
       participant worker as Worker
     end
+    participant prover as Prover
 
     par Prepare elf
       Note over client: 1. write rust program <br/> and compile to elf
@@ -46,7 +47,12 @@ sequenceDiagram
 
     par Do task asynchronous
       queue ->> worker: Dequeue(task_id, ...) <br/> set task status to "running"
-      worker->>worker: Execute subprocess (...)
+
+      worker->>prover: Launch the prover execution <br/> (program, attestation)
+
+      Note over prover: load the corresponding program, <br/> and generate a proof.
+      prover->>worker: return proof
+
       worker->>queue: Task completed
       queue->>service: Set task status to "done"
     end
@@ -68,7 +74,7 @@ sequenceDiagram
 - program:
   - [dvc-brevis-program](./dvc-brevis-program/README.md)
   - [dvc-succinct-program](./dvc-succinct-program/README.md)
-- prover:
+- prover: the execution of your program to generate zero-knowledge proofs (ZKPs).
   - [dvc-brevis-prover](./dvc-brevis-prover/README.md)
   - [dvc-succinct-prover](./dvc-succinct-prover/README.md)
 
