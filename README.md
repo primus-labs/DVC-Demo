@@ -3,6 +3,10 @@
 
 ## Overview
 
+DVC (data verification and computation) allows verified personal data to be computed in a privacy-preserving way. Primus DVC uses zkTLS and zkVM to support this capability in a plugable mode. Developers can use different zkTLS algorithms (MPC-TLS or Proxy-TLS) and different zkVM providers (e.g., Succinct, Brevis, etc) to customize their business use case. 
+
+## The Idea
+Primus zkTLS enables DVC by passing user data attestation and its hash value to the zkVM, where the zk proof is generated on the private data and its metadata restrictions. For instance, if a user wants to prove his bank balance is over 10 USD. He can first create a zkTLS attestation about the balance raw data， and then create a verifiable zk proof towards the raw data to demonstrate the balance is over 10 USD. 
 
 ## Basic Workflow
 
