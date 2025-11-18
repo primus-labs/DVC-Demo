@@ -83,6 +83,6 @@ sequenceDiagram
   - [dvc-succinct-prover](./dvc-succinct-prover/README.md)
 
 
-## User Guide
-
+## Developer Guide
+The following document gives a step-by-step guide on how to create a zk proof with a zkTLS attestation locally.
 - [Developer's Guide](./DEVELOPER_GUIDE.md).
