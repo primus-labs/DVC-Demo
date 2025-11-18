@@ -60,6 +60,8 @@ Next, extract the required business fields. For example, from the `balances` arr
 
 For a complete implementation, see: [dvc-succinct-program/src/main.rs](./dvc-succinct-program/src/main.rs). 
 
+For more tutorials on how to write programs, please refer to [Basics | Succinct Docs](https://docs.succinct.xyz/docs/sp1/writing-programs/basics).
+
 <br/>
 
 **(3). Compile and Upload the Program**

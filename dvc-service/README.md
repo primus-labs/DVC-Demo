@@ -14,13 +14,18 @@
 
 ## How to Run
 
-Install dependencies:
+- Install dependencies:
 
 ```sh
 pip install -r requirements.txt
 ```
 
-Run the app:
+- Set up:
+
+Copy `.env.example` to `.env`. Refer [here](../dvc-succinct-prover/README.md) to compile prover and set `SUCCINCT_PROVER_BIN`.
+
+
+- Run the app:
 
 ```sh
 uvicorn main:app --host 0.0.0.0 --port 38080
