@@ -39,7 +39,7 @@ class ZKTLSClient {
       );
       const taskResult = await this._verifyAndPollTaskResultWithRetry(attestResult);
 
-      const zkVmRequestData = await this._prepareZkVmRequestData(taskResult, attestResult);
+      const zkVmRequestData = await this._prepareZkVmRequestData(taskResult, attestResult, responseResolves, options.verifyVersion);
       console.log(`✅ Total execution time: ${Date.now() - startTime}ms`);
       return zkVmRequestData;
     } catch (err) {
@@ -58,6 +58,7 @@ class ZKTLSClient {
       noProxy: true,
       runZkvm: true,
       requestParamsCallback: undefined,
+      verifyVersion: "1"
     };
     return { ...defaults, ...options };
   }
@@ -139,6 +140,7 @@ class ZKTLSClient {
           reqs = cb.requests;
           resps = cb.responseResolves;
         }
+        responseResolves = resps;
 
         const fullParams = {
           ...attestParams,
@@ -193,20 +195,58 @@ class ZKTLSClient {
   /**
    * Prepare final zkVM attestation data
    */
-  async _prepareZkVmRequestData(taskResult, attestResult) {
+  async _prepareZkVmRequestData(taskResult, attestResult, responseResolves, verifyVersion = "1") {
     const taskId = attestResult[0].taskId;
-    const plainResponse = this.primusNetwork.getAllJsonResponse(taskId);
 
-    if (!plainResponse) throw new Error('Unable to get plain JSON response');
+    if (verifyVersion == "1") {
+      const plainResponse = this.primusNetwork.getAllJsonResponse(taskId);
+      if (!plainResponse) throw new Error('Unable to get plain JSON response');
 
-    return {
-      attestationData: {
-        verification_type: 'HASH_COMPARISON',
-        public_data: attestResult,
-        private_data: { plain_json_response: plainResponse },
-      },
-      requestid: taskId,
-    };
+      return {
+        attestationData: {
+          verification_type: 'HASH_COMPARISON',
+          public_data: attestResult,
+          private_data: { plain_json_response: plainResponse },
+        },
+        requestid: taskId,
+      };
+    } else if (verifyVersion == "2") {
+      const verification_type = [];
+      const private_data = [];
+      for (const responseResolve of responseResolves) {
+        for (const rr of responseResolve) {
+          if (rr.op == "REVEAL_GRUMPKIN_COMMITMENT") {
+            const plainResponse = this.primusNetwork.getPlainResponse(taskId, 0, rr.parsePath);
+            if (!plainResponse) throw new Error('Unable to get plain response');
+            // console.log("plainResponse", plainResponse);
+
+            const randomData = this.primusNetwork.getPrivateData(taskId, rr.keyName);
+            if (!randomData) throw new Error('Unable to get randomData');
+            // console.log("randomData", randomData);
+
+            verification_type.push("GRUMPKIN_COMMITMENT");
+            private_data.push({
+              id: rr.keyName,
+              random: JSON.parse(randomData),
+              content: plainResponse
+            });
+          } else {
+            throw new Error('Un supported: ', rr.op);
+          }
+        }
+      }
+
+      return {
+        attestationData: {
+          verification_type,
+          public_data: attestResult,
+          private_data,
+        },
+        requestid: taskId,
+      };
+    }
+
+    return {};
   }
 
 }
