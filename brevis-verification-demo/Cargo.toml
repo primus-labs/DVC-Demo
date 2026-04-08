@@ -1,0 +1,17 @@
+[package]
+name = "brevis-verification-demo"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+pico-sdk = { git = "https://github.com/brevis-network/pico", branch = "main" }
+pico-vm = { git = "https://github.com/brevis-network/pico", branch = "main" }
+bincode = "1.3.3"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+anyhow = "1.0"
+hex = "0.4"
+structopt = "0.3"
+
+[patch.crates-io]
+ecdsa-core = { git = "https://github.com/brevis-network/signatures", package = "ecdsa", branch = "patch-v1.0.1" }

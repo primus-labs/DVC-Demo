@@ -1,0 +1,28 @@
+{
+  "name": "noir-verification-demo",
+  "version": "1.0.0",
+  "description": "Noir-based zkTLS attestation verification demo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:parsing": "cd att_verifier_parsing && yarn && yarn build",
+    "build:sdk": "cd aztec-attestation-sdk && yarn && yarn build",
+    "build": "yarn build:parsing && yarn build:sdk",
+    "compile:binance": "cd contracts/binance_verifier && nargo compile",
+    "verify:binance": "cd scripts && yarn tsx local-verify-binance.ts",
+    "deploy": "cd scripts && yarn tsx deploy-contract.ts"
+  },
+  "workspaces": [
+    "att_verifier_parsing",
+    "aztec-attestation-sdk",
+    "scripts"
+  ],
+  "dependencies": {
+    "@aztec/accounts": "4.2.0-aztecnr-rc.2",
+    "@aztec/aztec.js": "4.2.0-aztecnr-rc.2",
+    "@aztec/wallets": "4.2.0-aztecnr-rc.2"
+  },
+  "devDependencies": {
+    "@aztec/cli": "^4.2.0-aztecnr-rc.2"
+  }
+}

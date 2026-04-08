@@ -1,0 +1,35 @@
+# Build outputs
+dist/
+target/
+bindings/
+
+# Dependencies
+node_modules/
+
+# Lock files (using yarn)
+package-lock.json
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+log/
+
+# Environment
+.env
+.env.local
+
+# Aztec
+.aztec/
+.aztec-wallet/
+
+# Deployment
+deployment.json

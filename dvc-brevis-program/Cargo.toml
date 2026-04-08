@@ -1,16 +1,15 @@
 [package]
 name = "dvc-brevis-program"
 version = "0.1.0"
-edition = "2024"
+edition = "2021"
 resolver = "2"
 
 [dependencies]
-pico-sdk = { git = "https://github.com/brevis-network/pico", rev = "d67fb438" }
+pico-sdk = { git = "https://github.com/brevis-network/pico", branch = "main" }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 anyhow = { version = "1.0.40", default-features = false }
 
-# zktls-att-verification = { git = "https://github.com/primus-labs/zktls-att-verification.git", rev = "767ff78" }
 zktls-att-verification = { git = "https://github.com/primus-labs/zktls-att-verification.git", branch = "network-succinct" }
 
 [patch.crates-io]

@@ -1,0 +1,17 @@
+{
+  "name": "noir-verification-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "verify:binance": "tsx local-verify-binance.ts"
+  },
+  "dependencies": {
+    "aztec-attestation-sdk": "file:../aztec-attestation-sdk",
+    "att-verifier-parsing": "file:../att_verifier_parsing"
+  },
+  "devDependencies": {
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}
