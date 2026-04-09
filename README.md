@@ -84,5 +84,12 @@ sequenceDiagram
 
 
 ## Developer Guide
-The following document gives a step-by-step guide on how to create a zk proof with a zkTLS attestation locally.
+The following document gives a step-by-step guide on how to create a zk proof with a zkTLS attestation from a service provider perspective.
 - [Developer's Guide](./DEVELOPER_GUIDE.md).
+
+## Quick Start
+One may find the above process is more suitable for a production environment. A simpler way is to compute the input (zkTLS attestation) in a zkVM program, and verify the program output, a.k.a., a zk proof, either locally or on-chain. We provide three demos for the simplified DVC process.
+- [DVC with Succinct SP1](./succinct-verification-demo/README.md)
+- [DVC with Brevis Pico](./brevis-verification-demo/README.md)
+- [DVC with Aztec Noir](./noir-verification-demo/README.md), readers can also refer to this [tutorial](https://hashcloak.com/blog/primus-noir-zktls-tutorial?utm_source=x&utm_medium=organic&utm_campaign=zktls-aztec) for more details.
+
