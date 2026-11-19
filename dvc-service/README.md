@@ -32,6 +32,12 @@ uvicorn main:app --host 0.0.0.0 --port 38080
 # enable ssl by pass: --ssl-keyfile certs/server.key --ssl-certfile certs/server.crt
 ```
 
+To enable SSL, first generate the certificates locally (they are not committed):
+
+```sh
+cd certs && ./gen_certs.sh && cd ..
+```
+
 Access docs at: `http://localhost:38080/docs` for interactive API testing.
 
 
